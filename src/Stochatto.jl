@@ -10,6 +10,7 @@ export
     Interval,
     Note,
     Scale,
-    Chord
+    Chord,
+    show
 
 end
