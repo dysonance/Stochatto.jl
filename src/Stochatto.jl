@@ -1,5 +1,15 @@
 module Stochatto
 
 # package code goes here
+include("interval.jl")
+include("note.jl")
+include("scale.jl")
+include("chord.jl")
 
-end # module
+export
+    Interval,
+    Note,
+    Scale,
+    Chord
+
+end
