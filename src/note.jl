@@ -1,5 +1,9 @@
 import Base.show
 
+const NOTE_NAMES_FLATS = ("A","Bb","B","C","Db","D","Eb","E","F","Gb","G","Ab")
+const NOTE_NAMES_SHARPS = ("A","A#","B","C","C#","D","D#","E","F","F#","G","G#")
+const NOTE_NAMES = union(NOTE_NAMES_FLATS, NOTE_NAMES_SHARPS)
+
 mutable struct Note
     name::String
     octave::Int
