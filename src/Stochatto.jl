@@ -9,8 +9,23 @@ include("scales.jl")
 include("chord.jl")
 
 export
+    # types
     Interval,
     Note,
-    Chord,
     show
+    Chord,
+    # scales
+    CHROMATIC,
+    MAJOR,
+    NATURAL_MINOR,
+    HARMONIC_MINOR,
+    IONIAN,
+    DORIAN,
+    PHRYGIAN,
+    LYDIAN,
+    MIXOLYDIAN,
+    AEOLIAN,
+    LOCRIAN,
+    SCALES,
+    MODES
 end
