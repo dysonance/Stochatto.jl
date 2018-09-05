@@ -18,5 +18,5 @@ mutable struct Note
 end
 
 function show(io::IO, note::Note)
-    @printf("%s%i", note.name, note.octave)
+    println("$(note.name)$(note.octave)", note.name, note.octave)
 end
