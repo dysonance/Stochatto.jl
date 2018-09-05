@@ -1,6 +1,6 @@
 The Stochatto.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2018: JAmosAA.
+> Copyright (c) 2018: Jacob Amos.
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
