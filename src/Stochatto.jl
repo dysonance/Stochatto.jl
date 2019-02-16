@@ -5,15 +5,16 @@ module Stochatto
     # package code goes here
     include("algorithms.jl")
     include("interval.jl")
-    include("note.jl")
     include("scales.jl")
     include("chord.jl")
+    include("constant.jl")
 
     export
         # types
         Interval,
         show,
         Chord,
+        NOTES,
         # scales
         CHROMATIC,
         MAJOR,
