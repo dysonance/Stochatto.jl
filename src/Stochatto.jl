@@ -12,8 +12,7 @@ module Stochatto
     export
         # types
         Interval,
-        Note,
-        show
+        show,
         Chord,
         # scales
         CHROMATIC,
