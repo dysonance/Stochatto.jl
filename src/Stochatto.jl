@@ -8,6 +8,7 @@ module Stochatto
     include("scale.jl")
     include("chord.jl")
     include("constant.jl")
+    include("generate.jl")
 
     export
         # types
@@ -18,6 +19,7 @@ module Stochatto
         # scales
         CHROMATIC,
         MAJOR,
+        MINOR,
         NATURAL_MINOR,
         HARMONIC_MINOR,
         IONIAN,
