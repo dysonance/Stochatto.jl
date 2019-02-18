@@ -1,21 +1,32 @@
 __precompile__(true)
 
 module Stochatto
-
-    # package code goes here
-    include("algorithms.jl")
-    include("interval.jl")
-    include("scale.jl")
-    include("chord.jl")
     include("constant.jl")
+    include("scale.jl")
+    include("interval.jl")
+    include("chord.jl")
+    include("key.jl")
     include("generate.jl")
-
+    include("algorithms.jl")
     export
-        # types
+        # intervals
         Interval,
-        show,
+        ROOT,
+        OCTAVE,
+        MINOR_THIRD,
+        MAJOR_THIRD,
+        PERFECT_FOURTH,
+        PERFECT_FIFTH,
+        MINOR_SIXTH,
+        MAJOR_SIXTH,
+        MINOR_SEVENTH,
+        MAJOR_SEVENTH,
+        # chords
         Chord,
         NOTES,
+        MAJOR_CHORD,
+        MINOR_CHORD,
+        POWER_CHORD,
         # scales
         CHROMATIC,
         MAJOR,
@@ -31,7 +42,10 @@ module Stochatto
         LOCRIAN,
         SCALES,
         MODES,
+        # key signatures
+        Key,
+        ismajor,
+        isminor,
         # functionality
         acf_series
-
 end
