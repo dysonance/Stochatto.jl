@@ -1,4 +1,4 @@
-using MIDI
+using MIDI, Statistics
 
 import Base: +, length, size, iterate, ndims
 import Base.Broadcast: broadcasted, broadcastable, broadcast
@@ -17,3 +17,12 @@ broadcasted(f, note::Note) = f(note)
 
 +(note::Note, interval::Interval) = Note(note.pitch+interval.steps, note.velocity, note.position, note.duration, note.channel)
 -(note::Note, interval::Interval) = Note(note.pitch-interval.steps, note.velocity, note.position, note.duration, note.channel)
+
+function acf_series(n::Int, rho::Float64)::Vector{Float64}
+    out = zeros(n)
+    out[1] = randn()
+    @inbounds for i in 2:n
+        out[i] = randn() + out[i-1]*rho
+    end
+    return out
+end

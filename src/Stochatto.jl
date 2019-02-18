@@ -7,7 +7,6 @@ module Stochatto
     include("chord.jl")
     include("key.jl")
     include("generate.jl")
-    include("algorithms.jl")
     export
         # intervals
         Interval,
@@ -46,6 +45,6 @@ module Stochatto
         Key,
         ismajor,
         isminor,
-        # functionality
+        # generation
         acf_series
 end
