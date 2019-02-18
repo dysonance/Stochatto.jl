@@ -1,9 +1,6 @@
-if VERSION >= v"0.7-"
-    using Statistics
-end
+using Statistics
 
-function acf_series(n::Int,
-                    rho::Float64)::Vector{Float64}
+function acf_series(n::Int, rho::Float64)::Vector{Float64}
     out = zeros(n)
     out[1] = randn()
     @inbounds for i in 2:n

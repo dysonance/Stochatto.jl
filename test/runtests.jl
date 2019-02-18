@@ -1,5 +1,5 @@
 using Test
-using Stochatto, MIDI
+using Stochatto, MIDI, Statistics
 
 
 @testset "Note Generation" begin
