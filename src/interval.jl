@@ -1,3 +1,3 @@
 mutable struct Interval
-    steps::Float64
+    steps::Int
 end

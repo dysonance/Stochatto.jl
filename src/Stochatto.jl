@@ -5,7 +5,7 @@ module Stochatto
     # package code goes here
     include("algorithms.jl")
     include("interval.jl")
-    include("scales.jl")
+    include("scale.jl")
     include("chord.jl")
     include("constant.jl")
 
