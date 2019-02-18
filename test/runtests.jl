@@ -1,5 +1,13 @@
-using Stochatto
 using Test
+using Stochatto, MIDI
+
+
+@testset "Note Generation" begin
+    note = Note(60, 0, 0, 0)
+    major_scale = note .+ Interval.(MAJOR .- 1)
+    @test major_scale[1] == note
+    @test note - MAJOR_CHORD.notes[1] == note
+end
 
 @testset "Algorithms" begin
     N = 1000
