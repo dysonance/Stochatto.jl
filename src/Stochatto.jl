@@ -48,5 +48,6 @@ module Stochatto
         # key signatures
         Key,
         # generation
-        acf_series
+        acf_series,
+        generate
 end

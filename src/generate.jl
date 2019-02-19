@@ -1,4 +1,4 @@
-using MIDI, Statistics
+using MIDI, Statistics, Distributions
 
 import Base: +, -, length, size, iterate, ndims
 import Base.Broadcast: broadcasted, broadcastable, broadcast
@@ -27,3 +27,22 @@ function acf_series(n::Int, rho::Float64)::Vector{Float64}
     end
     return out
 end
+
+function generate(key::Key, initial::Note, distribution::D) where {D<:Distribution}
+    delta = key.ladder .- initial
+    idx = sortperm(abs.(delta))
+    d = delta[idx[ceil(Int, rand(distribution)*length(idx))]]
+    out = initial + d
+    out.position += initial.duration
+    return out
+end
+
+function generate(key::Key, initial::Note, distribution::D, n::Int) where {D<:Distribution}
+    out = Notes()
+    push!(out, initial)
+    for i in 2:n
+        push!(out, generate(key, out[i-1], distribution))
+    end
+    return out
+end
+

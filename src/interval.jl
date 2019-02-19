@@ -1,4 +1,4 @@
-import Base: -, ==
+import Base: -, ==, abs, isless
 
 mutable struct Interval
     steps::Int
@@ -6,6 +6,8 @@ end
 
 -(interval::Interval) = Interval(-interval.steps)
 ==(a::Interval, b::Interval) = a.steps == b.steps
+abs(interval::Interval) = Interval(abs(interval.steps))
+isless(a::Interval, b::Interval) = a.steps < b.steps
 
 const ROOT = Interval(0)
 const OCTAVE = Interval(12)

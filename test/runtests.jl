@@ -1,5 +1,5 @@
 using Test
-using Stochatto, MIDI, Statistics
+using Stochatto, MIDI, Statistics, Distributions
 
 @testset "Constants" begin
     @test length(NOTE_RANGE) == 97
@@ -20,6 +20,19 @@ end
         @test major_scale[1] == note
         @test note - MAJOR_CHORD.notes[1] == note
         @test (note - (note - Interval(3))) == Interval(3)
+    end
+    @testset "Generation" begin
+        tpq = 32
+        initial = Note(60, 127, 0, tpq)
+        scale = MAJOR
+        key = Key(initial, scale)
+        distribution = Beta(0.5, 4)
+        n = 16
+        sequence = generate(key, initial, distribution, n)
+        @test length(sequence) == n
+        for i in 1:n
+            @test sequence[i].pitch in [note.pitch for note in key.ladder]
+        end
     end
     @testset "Algorithms" begin
         N = 1000
