@@ -6,7 +6,14 @@ using Stochatto, MIDI, Statistics
     @test Int(NOTE_RANGE[1].pitch) == 12
 end
 
-@testset "Generators" begin
+@testset "Key Signatures" begin
+    cminor = Key(NOTE_RANGE[1], MINOR)
+    @test Int(cminor.root.pitch) % 12 == 0
+    @test length(cminor.scale) == 7
+    show(stdout, cminor)
+end
+
+@testset "Sequence Generators" begin
     @testset "Arithmetic" begin
         note = Note(60, 0, 0, 0)
         major_scale = note .+ Interval.(MAJOR)

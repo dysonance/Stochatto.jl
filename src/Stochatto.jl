@@ -47,8 +47,6 @@ module Stochatto
         MODES,
         # key signatures
         Key,
-        ismajor,
-        isminor,
         # generation
         acf_series
 end
