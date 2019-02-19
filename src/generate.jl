@@ -1,6 +1,6 @@
 using MIDI, Statistics
 
-import Base: +, length, size, iterate, ndims
+import Base: +, -, length, size, iterate, ndims
 import Base.Broadcast: broadcasted, broadcastable, broadcast
 
 # extensions to note type
@@ -17,6 +17,7 @@ broadcasted(f, note::Note) = f(note)
 
 +(note::Note, interval::Interval) = Note(note.pitch+interval.steps, note.velocity, note.position, note.duration, note.channel)
 -(note::Note, interval::Interval) = Note(note.pitch-interval.steps, note.velocity, note.position, note.duration, note.channel)
+-(a::Note, b::Note) = Interval(Int(a.pitch) - Int(b.pitch))
 
 function acf_series(n::Int, rho::Float64)::Vector{Float64}
     out = zeros(n)

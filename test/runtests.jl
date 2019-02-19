@@ -19,6 +19,7 @@ end
         major_scale = note .+ Interval.(MAJOR)
         @test major_scale[1] == note
         @test note - MAJOR_CHORD.notes[1] == note
+        @test (note - (note - Interval(3))) == Interval(3)
     end
     @testset "Algorithms" begin
         N = 1000

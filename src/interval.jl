@@ -1,10 +1,11 @@
-import Base: -
+import Base: -, ==
 
 mutable struct Interval
     steps::Int
 end
 
 -(interval::Interval) = Interval(-interval.steps)
+==(a::Interval, b::Interval) = a.steps == b.steps
 
 const ROOT = Interval(0)
 const OCTAVE = Interval(12)
