@@ -8,6 +8,11 @@ module Stochatto
     include("key.jl")
     include("generate.jl")
     export
+        # constants
+        N_OCTAVES,
+        NOTE_RANGE,
+        RANGE_MIN,
+        RANGE_MAX,
         # intervals
         Interval,
         ROOT,
@@ -22,7 +27,6 @@ module Stochatto
         MAJOR_SEVENTH,
         # chords
         Chord,
-        NOTES,
         MAJOR_CHORD,
         MINOR_CHORD,
         POWER_CHORD,
