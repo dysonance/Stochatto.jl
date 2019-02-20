@@ -7,6 +7,7 @@ module Stochatto
     include("chord.jl")
     include("key.jl")
     include("generate.jl")
+    include("rhythm.jl")
     export
         # constants
         N_OCTAVES,
@@ -47,6 +48,16 @@ module Stochatto
         MODES,
         # key signatures
         Key,
+        # rhythm
+        Rhythm,
+        TPQ,
+        THIRTY_SECOND,
+        SIXTEENTH,
+        TRIPLET,
+        EIGHTH,
+        QUARTER,
+        HALF,
+        WHOLE,
         # generation
         acf_series,
         generate
