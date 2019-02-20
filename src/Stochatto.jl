@@ -50,6 +50,7 @@ module Stochatto
         Key,
         # rhythm
         Rhythm,
+        add_rhythm,
         TPQ,
         THIRTY_SECOND,
         SIXTEENTH,
