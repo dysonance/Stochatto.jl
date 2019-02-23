@@ -6,20 +6,20 @@ mutable struct Engine
     key_signature::Key
 end
 
-function generate(key::Key, initial::Note, distribution::D) where {D<:Distribution}
+function generate(key::Key, initial::Note, generator::Distribution)
     delta = key.ladder .- initial
     idx = sortperm(abs.(delta))
-    d = delta[idx[ceil(Int, rand(distribution)*length(idx))]]
+    d = delta[idx[ceil(Int, rand(generator)*length(idx))]]
     out = initial + d
     out.position += initial.duration
     return out
 end
 
-function generate(key::Key, initial::Note, distribution::D, n::Int) where {D<:Distribution}
+function generate(key::Key, initial::Note, generator::Distribution, n::Int)
     out = Notes()
     push!(out, initial)
     for i in 2:n
-        push!(out, generate(key, out[i-1], distribution))
+        push!(out, generate(key, out[i-1], generator))
     end
     return out
 end
