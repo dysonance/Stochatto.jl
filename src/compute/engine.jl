@@ -25,8 +25,8 @@ function generate_notes(key::Key, initial::Note, generator::Distribution, n::Int
     return out
 end
 
-function generate_rhythm(notes::Notes{Note}, generator::Distribution, precision::Int=4)::Notes{Note}
-    beats = round.([TPQ//ceil(Int,rand(generator))//TPQ for i in 1:length(notes)], digits=1, base=precision)
+function generate_rhythm(notes::Notes{Note}, generator::Distribution, precision::Rational=SIXTEENTH)::Notes{Note}
+    beats = round.([TPQ//ceil(Int,rand(generator))//TPQ for i in 1:length(notes)], digits=1, base=Int(1/precision))
     notes[1].duration = beats[1]*TPQ
     for i in 2:length(notes)
         notes[i].duration = beats[i]*TPQ
@@ -35,7 +35,7 @@ function generate_rhythm(notes::Notes{Note}, generator::Distribution, precision:
     return notes
 end
 
-function generate(engine::Engine, n::Int, initial::Note=engine.key.ladder[rand(1:length(engine.key.ladder))], precision::Int=4)::Notes{Note}
+function generate(engine::Engine, n::Int, initial::Note=engine.key.ladder[rand(1:length(engine.key.ladder))], precision::Rational=SIXTEENTH)::Notes{Note}
     notes = generate_notes(engine.key, initial, engine.note_generator, n)
     notes = generate_rhythm(notes, engine.beat_generator, precision)
     return notes
