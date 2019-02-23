@@ -41,7 +41,7 @@ notes = generate(engine, n, initial, precision) # generate a series of MIDI note
 musescore("tmp.pdf", notes)
 ```
 
-![alt text](https://raw.githubusercontent.com/dysonance/Stochatto.jl/master/examples/example_score.pdf)
+![Example Score Output](https://raw.githubusercontent.com/dysonance/Stochatto.jl/master/examples/example_score.png)
 
 
 ## References
