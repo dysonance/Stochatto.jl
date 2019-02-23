@@ -21,13 +21,14 @@ SEED = 1
 key = Key(NOTE_RANGE[1] + OCTAVE + OCTAVE + MAJOR_SIXTH, MINOR)
 
 # define distribution governing proximity in the scale of the next note to the current note
-# stronger probability density near zero increases proximity of notes in scale
-# stronger probability desnity near one creates more random jumps around the key signature
+# stronger density for values of x near zero will increase proximity of notes in scale
+# stronger density for values of x near one will create more random jumps around the key signature's scale
 # (NOTE: the support of this distribution must currently have bound support on [0, 1])
 notegen = Beta(1/3, 9)
 
 # define distribution governing how the rhythm of each note is altered
-# higher density for larger values of x will produce smaller note durations
+# stronger density for larger values of x will produce smaller note durations
+# stronger density for values of x closer to zero will produce longer note durations
 # (NOTE: the support of this distribution must currently be bounded from below at 0)
 beatgen = Gamma(1/2, 2)
 
