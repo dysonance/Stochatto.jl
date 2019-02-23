@@ -21,3 +21,5 @@ broadcasted(f, note::Note) = f(note)
 
 +(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position+(r.bar*r.beat*TPQ), n.duration)
 *(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position, r.duration*TPQ)
+
+*(interval::Interval, times::Int) = Interval(interval.steps*times)
