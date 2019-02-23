@@ -53,7 +53,9 @@ end
         beat_generator = Gamma(1/2, 2)
         engine = Engine(key, note_generator, beat_generator)
         n = 32
-        notes = generate(engine, n)
+        initial = key.root + OCTAVE*5
+        precision = 4
+        notes = generate(engine, n, initial, precision)
         @test length(notes) == n
         @test length(unique([note.pitch for note in notes])) > 1
         @test length(unique([note.duration for note in notes])) > 1
