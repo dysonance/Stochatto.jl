@@ -27,6 +27,8 @@ key = Key(NOTE_RANGE[1] + OCTAVE + OCTAVE + MAJOR_SIXTH, MINOR)
 notegen = Beta(1/3, 9)
 
 # define distribution governing how the rhythm of each note is altered
+# higher density for larger values of x will produce smaller note durations
+# (NOTE: the support of this distribution must currently be bounded from below at 0)
 beatgen = Gamma(1/2, 2)
 
 Random.seed!(12)                                # set the RNG seed to enable reproducibility

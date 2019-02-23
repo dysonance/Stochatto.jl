@@ -7,7 +7,7 @@ mutable struct Engine
 end
 
 function generate_note(key::Key, initial::Note, generator::Distribution)::Note
-    @assert support(generator).ub <= 1 "generator must have bounded support <= 1"
+    @assert support(generator).ub <= 1.0 "generator must have bounded support <= 1"
     delta = key.ladder .- initial
     idx = sortperm(abs.(delta))
     d = delta[idx[ceil(Int, rand(generator)*length(idx))]]
@@ -26,7 +26,8 @@ function generate_notes(key::Key, initial::Note, generator::Distribution, n::Int
 end
 
 function generate_rhythm(notes::Notes{Note}, generator::Distribution, precision::Rational=SIXTEENTH)::Notes{Note}
-    beats = round.([TPQ//ceil(Int,rand(generator))//TPQ for i in 1:length(notes)], digits=1, base=Int(1/precision))
+    @assert support(generator).lb >= 0.0 "generator must have bounded support >= 0"
+    beats = round.(1 .// [ceil(Int, rand(generator)) for i in 1:length(notes)], digits=1, base=Int(1/precision))
     notes[1].duration = beats[1]*TPQ
     for i in 2:length(notes)
         notes[i].duration = beats[i]*TPQ
