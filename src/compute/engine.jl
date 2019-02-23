@@ -10,7 +10,7 @@ function generate_note(key::Key, initial::Note, generator::Distribution)::Note
     @assert support(generator).ub <= 1 "generator must have bounded support <= 1"
     delta = key.ladder .- initial
     idx = sortperm(abs.(delta))
-    d = delta[idx[ceil(Int, cdf(generator, rand(generator))*length(idx))]]
+    d = delta[idx[ceil(Int, rand(generator)*length(idx))]]
     out = initial + d
     out.position += initial.duration
     return out

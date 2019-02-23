@@ -1,6 +1,6 @@
 using MIDI, Statistics, Distributions
 
-import Base: +, -, *, length, size, iterate, ndims
+import Base: +, -, *, ^, length, size, iterate, ndims
 import Base.Broadcast: broadcasted, broadcastable, broadcast
 
 # extensions to note type
@@ -22,4 +22,5 @@ broadcasted(f, note::Note) = f(note)
 +(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position+(r.bar*r.beat*TPQ), n.duration)
 *(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position, r.duration*TPQ)
 
-*(interval::Interval, times::Int) = Interval(interval.steps*times)
+*(interval::Interval, x::Int) = Interval(interval.steps*x)
+^(interval::Interval, x::Int) = Interval(interval.steps^x)

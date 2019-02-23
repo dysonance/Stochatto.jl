@@ -20,4 +20,3 @@ const MINOR_SIXTH = Interval(8)
 const MAJOR_SIXTH = Interval(9)
 const MINOR_SEVENTH = Interval(10)
 const MAJOR_SEVENTH = Interval(11)
-
