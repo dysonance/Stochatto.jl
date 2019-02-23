@@ -61,7 +61,12 @@ module Stochatto
         QUARTER,
         HALF,
         WHOLE,
-        # generation
+        # utility
         acf_series,
+        # generation
+        Engine,
+        generate_note,
+        generate_notes,
+        generate_rhythm,
         generate
 end

@@ -48,16 +48,17 @@ end
     end
 
     @testset "Engine" begin
-        tpq = 32
-        initial = Note(60, 127, 0, tpq)
-        scale = MAJOR
-        key = Key(initial, scale)
-        distribution = Beta(0.5, 4)
-        n = 16
-        sequence = generate(key, initial, distribution, n)
-        @test length(sequence) == n
-        for i in 1:n
-            @test sequence[i].pitch in [note.pitch for note in key.ladder]
+        key = Key(NOTE_RANGE[rand(1:length(NOTE_RANGE))], MINOR)
+        note_generator = Gamma(4, 1/4)
+        beat_generator = Gamma(1/2, 2)
+        engine = Engine(key, note_generator, beat_generator)
+        n = 32
+        notes = generate(engine, n)
+        @test length(notes) == n
+        @test length(unique([note.pitch for note in notes])) > 1
+        @test length(unique([note.duration for note in notes])) > 1
+        for i in 2:n
+            @test notes[i].position >= notes[i-1].position + notes[i-1].duration
         end
     end
 
