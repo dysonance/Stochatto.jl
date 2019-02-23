@@ -16,12 +16,25 @@ using Stochatto, MIDI, Statistics, Distributions
     end
 
     @testset "Interval" begin
+        @test NOTE_RANGE[1] + ROOT == NOTE_RANGE[1]
+        @test pitch_to_name((NOTE_RANGE[1] + OCTAVE * 4).pitch) == "C4"
+        @test Note(name_to_pitch("C6"), 127, 0, 0) + PERFECT_FOURTH == Note(name_to_pitch("F6"), 127, 0, 0)
+        @test abs(-OCTAVE) == OCTAVE
     end
 
     @testset "Chord" begin
+        note = NOTE_RANGE[1] + OCTAVE*6
+        for chord in [MAJOR_CHORD, MINOR_CHORD, POWER_CHORD]
+            @test (note .+ chord.notes)[1] == note
+        end
     end
 
     @testset "Scale" begin
+        @test length(intersect(String.(keys(SCALES)), String.(keys(MODES)))) == 0
+        @test length(unique(values(SCALES))) == length(SCALES)
+        @test length(unique(values(MODES))) == length(MODES)
+        @test AEOLIAN == MINOR
+        @test IONIAN == MAJOR
     end
 
 end
