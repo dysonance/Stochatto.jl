@@ -8,6 +8,13 @@ using Stochatto, MIDI, Statistics, Distributions
         @test Int(NOTE_RANGE[1].pitch) == 12
     end
 
+    @testset "Beat" begin
+        @test QUARTER * SIXTEENTH == SIXTEENTH
+        @test WHOLE == QUARTER * 4
+        @test 3*TRIPLET == 2*EIGHTH
+        @test 16*THIRTY_SECOND == HALF
+    end
+
     @testset "Key" begin
         cminor = Key(NOTE_RANGE[1], MINOR)
         @test Int(cminor.root.pitch) % 12 == 0

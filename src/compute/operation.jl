@@ -19,8 +19,8 @@ broadcasted(f, note::Note) = f(note)
 -(note::Note, interval::Interval) = Note(note.pitch-interval.steps, note.velocity, note.position, note.duration, note.channel)
 -(a::Note, b::Note) = Interval(Int(a.pitch) - Int(b.pitch))
 
-+(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position+(r.bar*r.beat*TPQ), n.duration)
-*(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position, r.duration*TPQ)
+#+(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position+(r.bar*r.beat*TPQ), n.duration)
+#*(n::Note, r::Rhythm) = Note(n.pitch, n.velocity, n.position, r.duration*TPQ)
 
 *(interval::Interval, x::Int) = Interval(interval.steps*x)
 ^(interval::Interval, x::Int) = Interval(interval.steps^x)

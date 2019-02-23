@@ -6,7 +6,7 @@ module Stochatto
     include("model/interval.jl")
     include("model/chord.jl")
     include("model/key.jl")
-    include("model/rhythm.jl")
+    include("model/beat.jl")
     include("compute/utility.jl")
     include("compute/operation.jl")
     include("compute/engine.jl")
@@ -51,8 +51,6 @@ module Stochatto
         # key signatures
         Key,
         # rhythm
-        Rhythm,
-        add_rhythm,
         TPQ,
         THIRTY_SECOND,
         SIXTEENTH,
