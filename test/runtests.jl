@@ -49,7 +49,7 @@ end
 
     @testset "Engine" begin
         key = Key(NOTE_RANGE[rand(1:length(NOTE_RANGE))], MINOR)
-        note_generator = Gamma(4, 1/4)
+        note_generator = Beta(1/3, 9)
         beat_generator = Gamma(1/2, 2)
         engine = Engine(key, note_generator, beat_generator)
         n = 32
