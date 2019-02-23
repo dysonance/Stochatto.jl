@@ -1,13 +1,15 @@
 __precompile__(true)
 
 module Stochatto
-    include("constant.jl")
-    include("scale.jl")
-    include("interval.jl")
-    include("chord.jl")
-    include("key.jl")
-    include("generate.jl")
-    include("rhythm.jl")
+    include("model/constant.jl")
+    include("model/scale.jl")
+    include("model/interval.jl")
+    include("model/chord.jl")
+    include("model/key.jl")
+    include("model/rhythm.jl")
+    include("compute/utility.jl")
+    include("compute/operation.jl")
+    include("compute/engine.jl")
     export
         # constants
         N_OCTAVES,
