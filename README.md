@@ -16,9 +16,12 @@ Stochatto is a Julia package that aims to facilitate efficient research in algor
 ```julia
 using Stochatto, Random, Distributions, MusicManipulations
 
-SEED = 1
+# define the random generator seed to allow reproducible results
+SEED = 12
 
-key = Key(NOTE_RANGE[1] + OCTAVE + OCTAVE + MAJOR_SIXTH, MINOR)
+# define the key signature used to define the scale the notes will follow
+# here we use A-minor: the bottom of the note range (C0), with two octaves and a major sixth added
+key = Key(NOTE_RANGE[1] + OCTAVE*2 + MAJOR_SIXTH, MINOR)
 
 # define distribution governing proximity in the scale of the next note to the current note
 # stronger density for values of x near zero will increase proximity of notes in scale
@@ -32,7 +35,7 @@ notegen = Beta(1/3, 9)
 # (NOTE: the support of this distribution must currently be bounded from below at 0)
 beatgen = Gamma(1/2, 2)
 
-Random.seed!(12)                                # set the RNG seed to enable reproducibility
+Random.seed!(SEED)                              # set the RNG seed to enable reproducibility
 engine = Engine(key, notegen, beatgen)          # initialize the note generation engine
 n = 64                                          # define the number of notes to generate
 initial = key.root + OCTAVE * 5                 # define the initial note to start the series
