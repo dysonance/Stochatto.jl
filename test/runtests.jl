@@ -69,8 +69,8 @@ end
 
     @testset "Engine" begin
         key = Key(NOTE_RANGE[rand(1:length(NOTE_RANGE))], MINOR)
-        note_generator = Beta(1/3, 9)
-        beat_generator = Gamma(1/2, 2)
+        note_generator = Normal(0, 9)
+        beat_generator = Poisson(2)
         engine = Engine(key, note_generator, beat_generator)
         n = 32
         initial = key.root + OCTAVE*5
