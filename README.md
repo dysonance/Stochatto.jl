@@ -24,7 +24,7 @@ precision = SIXTEENTH           # round to nearest sixteenth note
 notegen = Normal(0, 2.5)        # distribute next note normally around current note
 beatgen = Poisson(1)            # divide quarter note durations by drawing from poisson
 
-# create engine and gnererate note sequence
+# create engine and generate note sequence
 engine = Engine(key, notegen, beatgen)
 notes = generate(engine, n, initial, precision)
 [println(note) for note in notes]
