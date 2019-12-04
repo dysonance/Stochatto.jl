@@ -16,35 +16,22 @@ Stochatto is a Julia package that aims to facilitate efficient research in algor
 ```julia
 using Stochatto, Random, Distributions, MusicManipulations
 
-# define the random generator seed to allow reproducible results
-SEED = 12
+Random.seed!(12)                # set random number seed for reproducibility
+key = Key(NOTE_RANGE[1], MINOR) # use c minor scale
+n = 64                          # generate 64 notes
+initial = key.root + OCTAVE * 6 # start sequence at C6
+precision = SIXTEENTH           # round to nearest sixteenth note
+notegen = Normal(0, 2.5)        # distribute next note normally around current note
+beatgen = Poisson(1)            # divide quarter note durations by drawing from poisson
 
-# define the key signature used to define the scale the notes will follow
-# here we use A-minor: the bottom of the note range (C0), with two octaves and a major sixth added
-key = Key(NOTE_RANGE[1] + OCTAVE*2 + MAJOR_SIXTH, MINOR)
-
-# define distribution governing proximity in the scale of the next note to the current note
-# stronger density for values of x near zero will increase proximity of notes in scale
-# stronger density for values of x near one will create more random jumps around the key signature's scale
-# (NOTE: the support of this distribution must currently have bound support on [0, 1])
-notegen = Beta(1/3, 9)
-
-# define distribution governing how the rhythm of each note is altered
-# stronger density for larger values of x will produce smaller note durations
-# stronger density for values of x closer to zero will produce longer note durations
-# (NOTE: the support of this distribution must currently be bounded from below at 0)
-beatgen = Gamma(1/2, 2)
-
-Random.seed!(SEED)                              # set the RNG seed to enable reproducibility
-engine = Engine(key, notegen, beatgen)          # initialize the note generation engine
-n = 64                                          # define the number of notes to generate
-initial = key.root + OCTAVE * 5                 # define the initial note to start the series
-precision = SIXTEENTH                           # define the granularity of note rhythm
-notes = generate(engine, n, initial, precision) # generate a series of MIDI notes
-[println(note) for note in notes]               # print the output of the note generation algorithm
+# create engine and generate note sequence
+engine = Engine(key, notegen, beatgen)
+notes = generate(engine, n, initial, precision)
+[println(note) for note in notes]
 
 # generate a musical score from the stochastically generated series of notes
-musescore("tmp.pdf", notes)
+musescore("tmp.pdf", notes) # create and open sheet music pdf
+run(`open tmp.mid`)         # open musescore app to listen to song
 ```
 
 ![Example Score Output](https://raw.githubusercontent.com/dysonance/Stochatto.jl/master/examples/example_score.png)
