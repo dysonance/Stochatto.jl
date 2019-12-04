@@ -2,6 +2,8 @@
 miscellaneous package utilities
 =#
 
+import MIDI: Note
+
 function acf_series(n::Int, rho::Float64)::Vector{Float64}
     out = zeros(n)
     out[1] = randn()
@@ -45,3 +47,12 @@ function find_note(name)::Tuple{MIDI.Note, Int}
     end
     return missing, 0
 end
+
+@doc """
+```
+notefreq(note::Note)::Float64
+```
+Estimate the frequency in hertz of a `MIDI.Note`.
+**Note**: For background reference see https://en.wikipedia.org/wiki/Scientific_pitch_notation#Table_of_note_frequencies.
+""" ->
+notefreq(note::Note)::Float64 = 440.0 * 2.0^(((note-MIDDLE_C).steps - 9) / 12.0)

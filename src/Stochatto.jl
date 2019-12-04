@@ -65,6 +65,7 @@ module Stochatto
         acf_series,
         find_note,
         to_sharp_convention,
+        notefreq,
         # generation
         Engine,
         generate_note,
