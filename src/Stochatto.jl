@@ -17,6 +17,7 @@ module Stochatto
         RANGE_MIN,
         RANGE_MAX,
         MIDDLE_C,
+        SHARP,
         # intervals
         Interval,
         ROOT,
@@ -63,6 +64,7 @@ module Stochatto
         # utility
         acf_series,
         find_note,
+        to_sharp_convention,
         # generation
         Engine,
         generate_note,
